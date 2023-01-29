@@ -1,0 +1,162 @@
+﻿@using PagedList.Mvc
+@using PagedList;
+@model  PagedList.IPagedList<roomie.Models.tbl_product>
+
+
+@{
+    ViewBag.Title = "User Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<head>
+
+    <meta name="viewport" content="width=device-width" />
+    <title>View  Category</title>
+
+    @Styles.Render("~/Content/userindex.css")
+    @Styles.Render("~/Content/layout.css")
+
+</head>
+
+<body>
+
+    <div class="container-container">
+
+        <div class="container">
+
+            <div class=" form-container search-column">
+
+                @using (Html.BeginForm("Search", "User"))
+                {
+                    <div class="navbar-form">
+
+                        <div class="form-group">
+
+                            <span> Wyszukaj słowo w opisie ogłoszenia: </span>
+                            <br />
+                            @Html.TextBox("search", null, new { @placeholder = "wyszukaj...", @type = "text" })
+                            <br />
+
+                            <span> Kwota: </span>
+                            <br />
+                            @Html.TextBox("price_from", null, new { @placeholder = " cena min: " })
+                            <p2> - </p2>
+                            @Html.TextBox("price_to", null, new { @placeholder = "cena max: " })
+                            <br />
+
+                            <div class="pro-bool">
+
+                                <div class="bool">
+                                    <img src="~/Content/img_icons/tv.png" title="w mieszkaniu jest tv" />
+                                    @Html.CheckBox("TV")
+                                    <br />
+                                </div>
+
+                                <div class="bool">
+                                    <img src="~/Content/img_icons/internet.png" title="w mieszkaniu jest internet" />
+                                    @Html.CheckBox("internet")
+                                    <br />
+                                </div>
+
+                                <div class="bool">
+                                    <img src="~/Content/img_icons/ac.png" title="w mieszkaniu jest klimatyzacja" />
+                                    @Html.CheckBox("ac")
+                                    <br />
+                                </div>
+
+                                <div class="bool">
+                                    <img src="~/Content/img_icons/parking.png" title="przy mieszkaniu jest parking" />
+                                    @Html.CheckBox("parking")
+                                    <br />
+                                </div>
+
+                                <div class="bool">
+                                    <img src="~/Content/img_icons/elevator.png" title="w budynku jest winda" />
+                                    @Html.CheckBox("elevator")
+                                    <br />
+                                </div>
+
+                                <div class="bool">
+                                    <img src="~/Content/img_icons/balcony.png" title="w mieszkaniu jest balkon/taras" />
+                                    @Html.CheckBox("balcony")
+                                    <br />
+                                </div>
+
+                                <div class="bool">
+                                    <img src="~/Content/img_icons/hcp.png" title="mieszkanie jest dostosowane do niepełnosprawnych" />
+                                    @Html.CheckBox("handicapped")
+                                    <br />
+                                </div>
+
+                                <div class="bool">
+                                    <img src="~/Content/img_icons/smoking.png" title="w mieszkaniu można palić" />
+                                    @Html.CheckBox("smoking")
+                                    <br />
+                                </div>
+
+                                <div class="bool">
+                                    <img src="~/Content/img_icons/pet.png" title="mieszkanie jest przyjazne zwierzętom" />
+                                    @Html.CheckBox("pet")
+                                    <br />
+                                </div>
+
+                            </div>
+
+                            <br />
+                            <button type="submit" class="btn btn-success">Szukaj</button>
+
+                        </div>
+
+                    </div>
+
+                }
+
+            </div>
+
+            <div class="form-container products-column">
+
+                <div class="card-container">
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <div class="card">
+
+                                <img src="@Url.Content(@item.tbl_pro_img.FirstOrDefault().pro_img_path)">
+
+                                <div class="info">
+                                    <div class="localisation"> <p>  @item.tbl_wojewodztwa_miasta.nazwa_miasta, @item.tbl_wojewodztwa_miasta.nazwa_województwa  @item.pro_address_street </p> </div>
+
+                                    <div class="name"> <p style="font-size: 20px"> @Html.ActionLink(@item.pro_name, "ViewAd", new { id = @item.pro_id }) </p> </div>
+
+                                    <div class="price"> <p style="font-size: 15px"> @item.pro_price zł  / miesięczny czynsz </p> </div>
+                                </div>
+
+                                <p> <button type="button" onclick="location.href='@Url.Action("ViewAd", new { id = @item.pro_id })'"> Wyświetl szczegóły </button> </p>
+
+                            </div>
+                        }
+                    }
+
+
+                </div>
+
+                <div class="container2" style="clear:both">
+
+                    <div>
+                        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                        of @Model.PageCount   @Html.PagedListPager(Model, page => Url.Action("UserIndex", new { page }))
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+

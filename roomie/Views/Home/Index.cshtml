@@ -1,0 +1,104 @@
+﻿@model roomie.Models.RegisterUsermodel
+
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/registration.css")
+    <title>Index</title>
+</head>
+
+<body>
+
+    <div class="container-container">
+
+        <div class="container" id="container">
+
+            <div class="form-container sign-up-container">
+
+                <form action="@Url.Action("SignUp")" method="post">
+                    <div>
+                        <h1>Stwórz profil</h1>
+
+                        @Html.TextBoxFor(x => x.user_name, new { @placeholder = "Imię i nazwisko", @type = "text" })
+                        <br>
+                        <span style="color:red">@Html.ValidationMessageFor(x => x.user_name)</span>
+
+
+                        @Html.TextBoxFor(x => x.user_email, new { @placeholder = "e-mail", @type = "text" })
+                        <br />
+                        <span style="color:red">@Html.ValidationMessageFor(x => x.user_email)</span>
+
+
+                        @Html.TextBoxFor(x => x.user_password, new { @placeholder = "hasło", @type = "password" })
+                        <br />
+                        <span style="color:red">@Html.ValidationMessageFor(x => x.user_password)</span>
+
+
+                        <button>Zarejestruj się!</button>
+
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="form-container sign-in-container">
+
+                <form action="@Url.Action("Login")" method="post">
+
+                    <h1>Zaloguj się</h1>
+
+                    @Html.TextBoxFor(x => x.user_email, new { @placeholder = "e-mail", @type = "text" })
+                    <br />
+                    <span style="color:red">@Html.ValidationMessageFor(x => x.user_email)</span>
+
+                    @Html.TextBoxFor(x => x.user_password, new { @placeholder = "hasło", @type = "password" })
+                    <br />
+                    <span style="color:red">@Html.ValidationMessageFor(x => x.user_password)</span>
+
+                    <button>Zaloguj się</button>
+
+                </form>
+
+            </div>
+
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h1>Już jesteś z nami?</h1>
+                        <p>Przejdż do strony logowania aby przejść na swoje konto</p>
+                        <button class="ghost" id="signIn">Zaloguj się</button>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                        <h1>Nie masz jeszcze konta?</h1>
+                        <p>Zarejestruj się, aby móc przeglądać ogłoszenia oraz dodawać swoje własne</p>
+                        <button class="ghost" id="signUp">Zarejestruj się</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+-
+<script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/registration.js")
+}
+
+

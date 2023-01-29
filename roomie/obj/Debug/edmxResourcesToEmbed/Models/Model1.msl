@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="projectModelStoreContainer" CdmEntityContainer="projectEntities">
+    <EntitySetMapping Name="tbl_admin">
+      <EntityTypeMapping TypeName="projectModel.tbl_admin">
+        <MappingFragment StoreEntitySet="tbl_admin">
+          <ScalarProperty Name="admin_id" ColumnName="admin_id" />
+          <ScalarProperty Name="admin_username" ColumnName="admin_username" />
+          <ScalarProperty Name="admin_password" ColumnName="admin_password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_pro_img">
+      <EntityTypeMapping TypeName="projectModel.tbl_pro_img">
+        <MappingFragment StoreEntitySet="tbl_pro_img">
+          <ScalarProperty Name="pro_img_id" ColumnName="pro_img_id" />
+          <ScalarProperty Name="pro_img_fk_pro_id" ColumnName="pro_img_fk_pro_id" />
+          <ScalarProperty Name="pro_img_path" ColumnName="pro_img_path" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_product">
+      <EntityTypeMapping TypeName="projectModel.tbl_product">
+        <MappingFragment StoreEntitySet="tbl_product">
+          <ScalarProperty Name="pro_id" ColumnName="pro_id" />
+          <ScalarProperty Name="pro_name" ColumnName="pro_name" />
+          <ScalarProperty Name="pro_image" ColumnName="pro_image" />
+          <ScalarProperty Name="pro_fk_address_city" ColumnName="pro_fk_address_city" />
+          <ScalarProperty Name="pro_address_street" ColumnName="pro_address_street" />
+          <ScalarProperty Name="pro_address_building_num" ColumnName="pro_address_building_num" />
+          <ScalarProperty Name="pro_address_floor" ColumnName="pro_address_floor" />
+          <ScalarProperty Name="pro_price" ColumnName="pro_price" />
+          <ScalarProperty Name="pro_description" ColumnName="pro_description" />
+          <ScalarProperty Name="pro_type" ColumnName="pro_type" />
+          <ScalarProperty Name="pro_room_size" ColumnName="pro_room_size" />
+          <ScalarProperty Name="pro_room_num" ColumnName="pro_room_num" />
+          <ScalarProperty Name="pro_bathroom_num" ColumnName="pro_bathroom_num" />
+          <ScalarProperty Name="pro_roommates" ColumnName="pro_roommates" />
+          <ScalarProperty Name="pro_TV" ColumnName="pro_TV" />
+          <ScalarProperty Name="pro_internet" ColumnName="pro_internet" />
+          <ScalarProperty Name="pro_ac" ColumnName="pro_ac" />
+          <ScalarProperty Name="pro_parking" ColumnName="pro_parking" />
+          <ScalarProperty Name="pro_heating" ColumnName="pro_heating" />
+          <ScalarProperty Name="pro_elevator" ColumnName="pro_elevator" />
+          <ScalarProperty Name="pro_balcony" ColumnName="pro_balcony" />
+          <ScalarProperty Name="pro_handicapped" ColumnName="pro_handicapped" />
+          <ScalarProperty Name="pro_smoking" ColumnName="pro_smoking" />
+          <ScalarProperty Name="pro_pet" ColumnName="pro_pet" />
+          <ScalarProperty Name="pro_fk_user" ColumnName="pro_fk_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_user">
+      <EntityTypeMapping TypeName="projectModel.tbl_user">
+        <MappingFragment StoreEntitySet="tbl_user">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="user_email" ColumnName="user_email" />
+          <ScalarProperty Name="user_password" ColumnName="user_password" />
+          <ScalarProperty Name="user_image" ColumnName="user_image" />
+          <ScalarProperty Name="user_contact" ColumnName="user_contact" />
+          <ScalarProperty Name="user_birthdate" ColumnName="user_birthdate" />
+          <ScalarProperty Name="user_smoke" ColumnName="user_smoke" />
+          <ScalarProperty Name="user_pet" ColumnName="user_pet" />
+          <ScalarProperty Name="user_description" ColumnName="user_description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_wojewodztwa_miasta">
+      <EntityTypeMapping TypeName="projectModel.tbl_wojewodztwa_miasta">
+        <MappingFragment StoreEntitySet="tbl_wojewodztwa_miasta">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nazwa_miasta" ColumnName="nazwa_miasta" />
+          <ScalarProperty Name="nazwa_województwa" ColumnName="nazwa_województwa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

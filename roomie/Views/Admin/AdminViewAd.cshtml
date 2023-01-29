@@ -1,0 +1,237 @@
+﻿@model roomie.Models.Adviewmodel
+
+
+@{
+    ViewBag.Title = "ViewAd";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<head>
+
+    @Styles.Render("~/Content/adminview_ad.css")
+
+
+
+    <meta name="viewport" content="width=device-width" />
+
+    <title>ViewAd</title>
+
+</head>
+
+<body>
+
+    <div class="add-container">
+
+        <div class="add">
+
+            <div class="add_title">
+
+                <div> <p2> @Model.pro_name </p2> </div>
+
+                <div> <p3> AD-ID: @Model.pro_id </p3> </div>
+
+            </div>
+
+            <div class="pro_image_container">
+
+                <div class="pro_image">
+
+
+                    @if (Model != null)
+                    {
+                        foreach (var image in Model.pro_img_path)
+                        {
+
+                            <div class="mySlides fade">
+                                <img src="@Url.Content(image)" style="width:100%">
+                            </div>
+
+                        }
+                    }
+
+                </div>
+            </div>
+
+            <br />
+
+            <div class="add_description">
+                <p4> Opis: </p4>
+                <p> @Model.pro_description</p>
+            </div>
+
+            <div class="add_details">
+                <table class="add_basic_info">
+
+                    <tr> <td style="font-weight: bold;"> Miesięczny czynsz: </td> <td> @Model.pro_price zł </td> </tr>
+
+                    <tr> <td style="font-weight: bold;"> Przedmiot oferty: </td> <td> @Model.pro_type </td> </tr>
+
+                    <tr> <td style="font-weight: bold;"> Adres nieruchomości: </td> <td> @Model.nazwa_miasta, @Model.pro_address_street @Model.pro_address_building_num, Piętro: @Model.pro_address_floor </td></tr>
+
+                    <tr> <td style="font-weight: bold;"> Wielkość pokoju / mieszkania: </td> <td> @Model.pro_room_size m<sup>2</sup>  </td> </tr>
+
+                    <tr> <td style="font-weight: bold;"> Ilość łazienek: </td> <td> @Model.pro_bathroom_num </td> </tr>
+
+                    <tr> <td style="font-weight: bold;"> Ilość współlokatorów: </td> <td> @Model.pro_roommates </td> </tr>
+
+                    <tr> <td style="font-weight: bold;"> Rodzaj ogrzewania: </td> <td> @Model.pro_heating </td> </tr>
+
+                    <tr> <td style="font-weight: bold;"> Kontakt: </td> <td> @Model.user_contact </td> </tr>
+
+
+
+                </table>
+
+                <div> <p4> Elementy dodatkowe w mieszkaniu: </p4></div>
+
+                <div class="bool_info">
+
+                    <div class="icon">
+                        @if (@Model.pro_TV == true)
+                        {
+                            <img src="~/Content/img_icons/tv.png" />
+                        }
+                    </div>
+
+                    <div class="icon">
+                        @if (@Model.pro_ac == true)
+                        {
+                            <img src="~/Content/img_icons/ac.png" />
+                        }
+                    </div>
+
+                    <div class="icon">
+                        @if (@Model.pro_elevator == true)
+                        {
+                            <img src="~/Content/img_icons/elevator.png" />
+                        }
+                    </div>
+
+                    <div class="icon">
+                        @if (@Model.pro_handicapped == true)
+                        {
+                            <img src="~/Content/img_icons/hcp.png" />
+                        }
+                    </div>
+
+                    <div class="icon">
+                        @if (@Model.pro_internet == true)
+                        {
+                            <img src="~/Content/img_icons/internet.png" />
+                        }
+                    </div>
+
+                    <div class="icon">
+                        @if (@Model.pro_parking == true)
+                        {
+                            <img src="~/Content/img_icons/parking.png" />
+                        }
+                    </div>
+
+                    <div class="icon">
+                        @if (@Model.pro_pet == true)
+                        {
+                            <img src="~/Content/img_icons/pet.png" />
+                        }
+                    </div>
+
+                    <div class="icon">
+                        @if (@Model.pro_smoking == true)
+                        {
+                            <img src="~/Content/img_icons/smoking.png" />
+                        }
+                    </div>
+
+                    <div class="icon">
+                        @if (@Model.pro_balcony == true)
+                        {
+                            <img src="~/Content/img_icons/balcony.png" />
+                        }
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="user_data_container">
+
+
+            <button style="background-color: #f35741"> @Html.ActionLink("Zamknij to ogłoszenie", "DeleteAd", new { @class = "button", id = Model.pro_id }) </button>
+
+
+            <div class="user_data">
+
+                <p2> Ogłoszenie opublikowane przez: </p2>
+
+
+
+                <div class="data">
+
+                    <div class="user_photo">
+
+                        @if (String.IsNullOrEmpty(Model.user_image))
+                        {
+                            <img src="~/Content/img_icons/user.png" />
+                        }
+                        else
+                        {
+                            <img src="@Url.Content(@Model.user_image)" />
+                        }
+
+                    </div>
+
+                    <div class="user_info">
+
+                        <table class="info">
+
+                            <tr> <td> <b> Użytkownik: </b> </td> </tr>
+                            <tr> <td> @Model.user_name </td></tr>
+                            <tr> <td> <b> Kontakt: </b> </td> </tr>
+                            <tr> <td> @Model.user_contact </td></tr>
+                            <tr> <td> <b> O użytkowniku: </b> </td></tr>
+                            <tr> <td> @Model.user_description </td></tr>
+
+                        </table>
+
+                        <div class="user_icons">
+
+                            <div class="icon">
+                                @if (Model.user_smoke == true)
+                                {
+                                    <img src="~/Content/img_icons/smoking.png" />
+                                }
+                            </div>
+
+                            <div class="icon">
+                                @if (Model.user_pet == true)
+                                {
+                                    <img src="~/Content/img_icons/pet.png" />
+                                }
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+    </div>
+
+</body>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/viewad.js")
+}
+
+
+

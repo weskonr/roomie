@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="projectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tbl_admin">
+    <Key>
+      <PropertyRef Name="admin_id" />
+    </Key>
+    <Property Name="admin_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="admin_username" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="admin_password" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_pro_img">
+    <Key>
+      <PropertyRef Name="pro_img_id" />
+    </Key>
+    <Property Name="pro_img_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pro_img_fk_pro_id" Type="Int32" Nullable="false" />
+    <Property Name="pro_img_path" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbl_product" Relationship="Self.FK_tbl_pro_img_tbl_product" FromRole="tbl_pro_img" ToRole="tbl_product" />
+  </EntityType>
+  <EntityType Name="tbl_product">
+    <Key>
+      <PropertyRef Name="pro_id" />
+    </Key>
+    <Property Name="pro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pro_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="pro_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="pro_fk_address_city" Type="Int32" />
+    <Property Name="pro_address_street" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="pro_address_building_num" Type="Int32" />
+    <Property Name="pro_address_floor" Type="Int32" />
+    <Property Name="pro_price" Type="Int32" Nullable="false" />
+    <Property Name="pro_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="pro_type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="pro_room_size" Type="Int32" />
+    <Property Name="pro_room_num" Type="Int32" />
+    <Property Name="pro_bathroom_num" Type="Int32" />
+    <Property Name="pro_roommates" Type="Int32" />
+    <Property Name="pro_TV" Type="Boolean" Nullable="false" />
+    <Property Name="pro_internet" Type="Boolean" Nullable="false" />
+    <Property Name="pro_ac" Type="Boolean" Nullable="false" />
+    <Property Name="pro_parking" Type="Boolean" Nullable="false" />
+    <Property Name="pro_heating" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="pro_elevator" Type="Boolean" Nullable="false" />
+    <Property Name="pro_balcony" Type="Boolean" Nullable="false" />
+    <Property Name="pro_handicapped" Type="Boolean" Nullable="false" />
+    <Property Name="pro_smoking" Type="Boolean" Nullable="false" />
+    <Property Name="pro_pet" Type="Boolean" Nullable="false" />
+    <Property Name="pro_fk_user" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_pro_img" Relationship="Self.FK_tbl_pro_img_tbl_product" FromRole="tbl_product" ToRole="tbl_pro_img" />
+    <NavigationProperty Name="tbl_user" Relationship="Self.FK_tbl_product_tbl_user" FromRole="tbl_product" ToRole="tbl_user" />
+    <NavigationProperty Name="tbl_wojewodztwa_miasta" Relationship="Self.FK_tbl_product_tbl_wojewodztwa_miasta" FromRole="tbl_product" ToRole="tbl_wojewodztwa_miasta" />
+  </EntityType>
+  <EntityType Name="tbl_user">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="user_email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="user_password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="user_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="user_contact" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="user_birthdate" Type="DateTime" Precision="0" />
+    <Property Name="user_smoke" Type="Boolean" />
+    <Property Name="user_pet" Type="Boolean" />
+    <Property Name="user_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_product" Relationship="Self.FK_tbl_product_tbl_user" FromRole="tbl_user" ToRole="tbl_product" />
+  </EntityType>
+  <EntityType Name="tbl_wojewodztwa_miasta">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="nazwa_miasta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="nazwa_województwa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tbl_product" Relationship="Self.FK_tbl_product_tbl_wojewodztwa_miasta" FromRole="tbl_wojewodztwa_miasta" ToRole="tbl_product" />
+  </EntityType>
+  <Association Name="FK_tbl_pro_img_tbl_product">
+    <End Role="tbl_product" Type="Self.tbl_product" Multiplicity="1" />
+    <End Role="tbl_pro_img" Type="Self.tbl_pro_img" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_product">
+        <PropertyRef Name="pro_id" />
+      </Principal>
+      <Dependent Role="tbl_pro_img">
+        <PropertyRef Name="pro_img_fk_pro_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_product_tbl_user">
+    <End Role="tbl_user" Type="Self.tbl_user" Multiplicity="1" />
+    <End Role="tbl_product" Type="Self.tbl_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_user">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="tbl_product">
+        <PropertyRef Name="pro_fk_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_product_tbl_wojewodztwa_miasta">
+    <End Role="tbl_wojewodztwa_miasta" Type="Self.tbl_wojewodztwa_miasta" Multiplicity="0..1" />
+    <End Role="tbl_product" Type="Self.tbl_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_wojewodztwa_miasta">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_product">
+        <PropertyRef Name="pro_fk_address_city" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="projectEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbl_admin" EntityType="Self.tbl_admin" />
+    <EntitySet Name="tbl_pro_img" EntityType="Self.tbl_pro_img" />
+    <EntitySet Name="tbl_product" EntityType="Self.tbl_product" />
+    <EntitySet Name="tbl_user" EntityType="Self.tbl_user" />
+    <EntitySet Name="tbl_wojewodztwa_miasta" EntityType="Self.tbl_wojewodztwa_miasta" />
+    <AssociationSet Name="FK_tbl_pro_img_tbl_product" Association="Self.FK_tbl_pro_img_tbl_product">
+      <End Role="tbl_product" EntitySet="tbl_product" />
+      <End Role="tbl_pro_img" EntitySet="tbl_pro_img" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_product_tbl_user" Association="Self.FK_tbl_product_tbl_user">
+      <End Role="tbl_user" EntitySet="tbl_user" />
+      <End Role="tbl_product" EntitySet="tbl_product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_product_tbl_wojewodztwa_miasta" Association="Self.FK_tbl_product_tbl_wojewodztwa_miasta">
+      <End Role="tbl_wojewodztwa_miasta" EntitySet="tbl_wojewodztwa_miasta" />
+      <End Role="tbl_product" EntitySet="tbl_product" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

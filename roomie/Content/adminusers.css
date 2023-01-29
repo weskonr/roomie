@@ -1,0 +1,237 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+.container-container {
+    width: 98%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    top: 60px;
+    bottom: 40px;
+}
+
+img {
+    max-height: 100px;
+}
+
+span {
+    line-height: normal;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    overflow: auto;
+    position: relative;
+    overflow: auto;
+    width: 99%;
+    height: 99%;
+}
+
+
+.form-container {
+    top: 0;
+    /*    height: 98%;*/
+    ;
+}
+
+.search-column {
+    width: 30%;
+    /*    height: 95%;*/
+    max-width: 300px;
+    min-width: 200px;
+    position: sticky;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: column;
+    background-color: #fff;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    z-index: 2;
+    overflow: auto;
+}
+
+.navbar-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: transparent;
+}
+
+.form-group {
+    line-height: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 25px;
+}
+
+span {
+    padding-top: 3px;
+    padding-bottom: 2px;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 100;
+    letter-spacing: 0.5px;
+}
+
+.products-column {
+    width: 70%;
+    height: 95%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: auto;
+    background-color: transparent;
+}
+
+.card-container {
+    width: 99%;
+    height: 95%;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: auto;
+    background-color: transparent;
+}
+
+.container2 {
+    width: 100%;
+    border-top: 1px solid;
+    height: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+}
+
+.price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.card {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    min-width: 80px;
+    margin: 20px;
+    text-align: center;
+    width: 95%;
+    height: 120px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.info {
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    column-gap: 20px;
+
+}
+
+.name a {
+    color: inherit;
+}
+
+.localisation {
+    height: 15px;
+}
+
+    .localisation p {
+        font-size: 15px;
+        color: gray;
+    }
+
+/*.name {
+    height: 30px;
+}*/
+
+.name p {
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none !important;
+    color: black;
+}
+
+.name a:visited {
+    color: inherit;
+}
+
+.price {
+    height: 20px;
+}
+
+    .price p {
+        font-size: 20px;
+        color: gray;
+        font-weight: bold;
+    }
+
+
+.card button {
+    height: 50px;
+    border: none;
+    outline: 0;
+    padding: 12px;
+    background-color: #2f5057;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 0px
+}
+
+    .card button:hover {
+        background-color: #112621;
+    }
+
+button {
+    border-radius: 20px;
+    border: 1px solid #203b3c;
+    background-color: #203b3c;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}
+
+    button:active {
+        transform: scale(0.95);
+    }
+
+    button:focus {
+        outline: none;
+    }
+
+    button.ghost {
+        background-color: transparent;
+        border-color: #FFFFFF;
+    }
+

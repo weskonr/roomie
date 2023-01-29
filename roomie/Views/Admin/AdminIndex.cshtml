@@ -1,0 +1,28 @@
+﻿@model roomie.Models.tbl_admin
+
+@{
+    ViewBag.Title = "Admin Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+
+    <form action="@Url.Action("Adminlogin")" method="post">
+
+        <h1>Admin:</h1>
+
+
+        @Html.TextBoxFor(x => x.admin_username, new { @placeholder = "Imię i nazwisko", @type = "text" })
+        <br>
+        <span style="color:red">@Html.ValidationMessageFor(x => x.admin_username)</span>
+
+        @Html.TextBoxFor(x => x.admin_password, new { @placeholder = "hasło", @type = "password" })
+        <br />
+        <span style="color:red">@Html.ValidationMessageFor(x => x.admin_password)</span>
+
+
+        <button>Zarejestruj się!</button>
+
+    </form>
+
+</div>

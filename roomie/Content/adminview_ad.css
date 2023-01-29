@@ -1,0 +1,209 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
+
+* {
+    box-sizing: border-box
+}
+
+body{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+td {
+    padding: 5px;
+}
+
+p4 {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* OGŁOSZENIE   */
+.add-container {
+    width: 60%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+    margin-top: 60px;
+    margin-bottom: 60px;
+/*    background-color: white;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);*/
+    z-index: 2;
+}
+
+.add {
+    width: 90%;
+    height: 95%;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.add_title {
+    padding: 20px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+}
+    .add_title p2 {
+        padding: 0;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .add_title p3 {
+        padding: 0px;
+        font-weight: lighter;
+        margin-top: 5px;
+        font-size: 10px;
+    }
+
+.pro_image_container {
+    border-top: 1px solid;
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+
+}
+
+.pro_image {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    max-height: 420px;
+}
+
+.photo {
+    max-width: 99%;
+    max-width: 99%;
+}
+
+.bool_info {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.icon {
+    padding: 5px;
+}
+
+
+/* DANE UŻYTKOWNIKA */
+.user_data {
+    width: 30%;
+    margin-left: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.user_info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.user_data_container button {
+    border-radius: 20px;
+    border: 1px solid #203b3c;
+    background-color: #203b3c;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+    button a {
+        color: inherit;
+    }
+
+    .user_data_container button:active {
+        transform: scale(0.95);
+    }
+
+    .user_data_container button:focus {
+        outline: none;
+    }
+
+    ..user_data_container button.ghost {
+        background-color: transparent;
+        border-color: #FFFFFF;
+    }
+
+
+.user_data_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.user_data {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    min-width: 80px;
+    margin: 20px;
+    text-align: center;
+    min-width: 350px;
+    min-height: 500px;
+    background-color: #fff;
+
+}
+
+    .user_data p2 {
+        padding: 0;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+.data {
+    border-top: 1px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    column-gap: 50px;
+    padding-top: 50px;
+}
+
+.user_photo {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+    .user_photo img {
+        width: 100%;
+        height: auto;
+    }

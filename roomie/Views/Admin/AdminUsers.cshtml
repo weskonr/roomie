@@ -1,0 +1,126 @@
+﻿@using PagedList.Mvc
+@using PagedList;
+@model  PagedList.IPagedList<roomie.Models.tbl_user>
+
+@{
+    ViewBag.Title = "AdminUsers";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<!DOCTYPE html>
+
+<head>
+
+    <meta name="viewport" content="width=device-width" />
+    <title>View  Category</title>
+
+    @Styles.Render("~/Content/adminusers.css")
+    @Styles.Render("~/Content/layout.css")
+
+</head>
+
+<body>
+
+    <div class="container-container">
+
+        <div class="container">
+
+            <div class=" form-container search-column">
+
+                @using (Html.BeginForm("Search", "Admin"))
+                {
+                    <div class="navbar-form">
+
+                        <div class="form-group">
+
+                            <span> Wyszukaj słowo w opisie ogłoszenia: </span>
+                            <br />
+                            @Html.TextBox("search", null, new { @placeholder = "wyszukaj...", @type = "text" })
+                            <br />
+
+                            <span> Kwota: </span>
+                            <br />
+                            @Html.TextBox("price_from", null, new { @placeholder = " cena min: " })
+                            <p2> - </p2>
+                            @Html.TextBox("price_to", null, new { @placeholder = "cena max: " })
+                            <br />
+
+                            <span> AD-ID: </span>
+                            <br />
+                            @Html.TextBox("adId", null, new { @placeholder = "wyszukaj...", @type = "number" })
+                            <br />
+
+                            <span> User-ID: </span>
+                            <br />
+                            @Html.TextBox("userId", null, new { @placeholder = "wyszukaj...", @type = "number" })
+                            <br />
+
+
+                            <br />
+                            <button type="submit" class="btn btn-success">Szukaj</button>
+
+                        </div>
+
+                    </div>
+
+                }
+
+            </div>
+
+            <div class="form-container products-column">
+
+                <div class="card-container">
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <div class="card">
+
+                                <div class="info" style="width:20%">
+
+                                    @if (String.IsNullOrEmpty(@item.user_image))
+                                    {
+                                        <img src="~/Content/img_icons/user.png" />
+                                    }
+                                    else
+                                    {
+                                        <img src="@Url.Content(@item.user_image)" />
+                                    }
+
+                                </div>
+
+                                <div style="width:50%">
+                                    <p> opublikowane przez: @item.user_name</p>
+                                    <p> Adres użytkownika: @item.user_email</p>
+                                    <p> ID użytkownika: @item.user_id</p>
+                                </div>
+
+                                <div style="width: 30%; justify-content: center">
+                                    <p> <button type="button" style="background-color: #f35741 " onclick="location.href='@Url.Action("DeleteUser", new { id = @item.user_id })'"> Usuń użytkownika </button> </p>
+                                </div>
+
+                            </div>
+                        }
+                    }
+
+
+                </div>
+
+                <div class="container2" style="clear:both">
+
+                    <div>
+                        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                        of @Model.PageCount   @Html.PagedListPager(Model, page => Url.Action("AdminUsers", new { page }))
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>

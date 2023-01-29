@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+
+    <style>
+        .na {
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+    <title>@Page.Title</title>
+    @RenderSection("head", required: false)
+    @Styles.Render("~/Content/layout.css")
+
+</head>
+
+<body>
+   
+
+    <nav>
+
+        <ul class="navbar">
+
+            <li>
+
+                @if (Session["user_id"] != null)
+                {
+                    @Html.ActionLink("Roomie", "UserIndex", "User", new { area = "" }, new { @class = "navbar-brand" })
+                }
+                else
+                {
+                    @Html.ActionLink("Roomie", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                }
+
+            </li>
+
+
+            <li>
+                @if (Session["user_id"] != null)
+                {
+                    @Html.ActionLink("O projekcie", "About", "Home", new { @class = "link" })
+                }
+                else
+                {
+                    @Html.ActionLink("O projekcie", "About", "User", new { @class = "link" })
+                }
+            </li>
+
+            <li>
+                @if (Session["user_id"] != null)
+                {
+                    @Html.ActionLink("Dodaj ogłoszenie", "CreateAd", "User", null, new { @class = "link" })
+
+                }
+            </li>
+
+
+
+        </ul>
+
+        <div class="admin" style="">
+            @if (Session["user_id"] == null)
+            {
+                @Html.ActionLink("Admin", "AdminIndex", "Admin", null, new { @class = "link" })
+            }
+        </div>
+
+        @if (Session["user_id"] != null)
+        {
+            <div class="dropdown">
+                <button1 class="userprofile"> <div class="link" style="font-size=20px"> Użytkownik: </div> </button1>
+
+                <div class="dropdown-content">
+                    @Html.ActionLink("Edytuj dane użytkownika", "EditUser", "User", null, new { @class = "link" })
+
+                    @Html.ActionLink("Wyloguj", "Signout", "User", null, new { @class = "link" })
+
+                    @Html.ActionLink("Profil", "Profile", "User", null, new { @class = "link" })
+                </div>
+
+            </div>
+        }
+
+    </nav>
+
+
+        @*--------------------Render Body-------------------------------*@
+
+     <div class="content-container">
+
+        <div class="content">
+
+                @RenderBody()
+
+        </div>
+
+     </div>
+
+
+     <footer>
+         <p1>&copy; @DateTime.Now.Year</p1>
+     </footer>
+
+    @*-------------------------------------------------------------*@
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

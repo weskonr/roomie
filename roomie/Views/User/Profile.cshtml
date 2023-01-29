@@ -1,0 +1,139 @@
+﻿@using PagedList.Mvc
+@using PagedList;
+@model  roomie.Models.UserProfileModel
+
+
+@{
+    ViewBag.Title = "User Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<head>
+
+    <meta name="viewport" content="width=device-width" />
+    <title>View  Category</title>
+
+    @Styles.Render("~/Content/userprofile.css")
+    @Styles.Render("~/Content/layout.css")
+
+</head>
+
+<body>
+
+    <div class="container-container">
+
+        <div class="container">
+
+            <div class=" form-container search-column">
+
+
+                <div class="navbar-form">
+
+                    <div class="form-group">
+
+                        <p style="padding-top: 20px; font-weight: bold;"> DANE UŻYTKOWNIKA: <p3> U-ID: @Model.User.user_id </p3> </p>
+
+                        <hr />
+
+                        <div class="user_photo">
+
+                            @if (String.IsNullOrEmpty(Model.User.user_image))
+                            {
+                                <img src="~/Content/img_icons/user.png" />
+                            }
+                            else
+                            {
+                                <img src="@Url.Content(@Model.User.user_image)" />
+                            }
+
+                        </div>
+
+                        <div class="data">
+
+                            <p2> Imię i nazwisko: </p2> <p> @Model.User.user_name </p>
+
+                            <p2> Adres e-mail: </p2> <p> @Model.User.user_email </p>
+
+                            <p2> Numer kontaktowy: </p2> <p> @Model.User.user_contact </p>
+
+                            <p2> Data urodzenia: </p2> <p> @Model.User.user_birthdate </p>
+
+                            <p2> Opis: </p2> <p> @Model.User.user_description </p>
+
+                        </div>
+
+                        <div>
+                            @if (@Model.User.user_smoke == true)
+                            {
+                                <img src="~/Content/img_icons/smoking.png" />
+                            }
+
+                            @if (@Model.User.user_pet == true)
+                            {
+                                <img src="~/Content/img_icons/pet.png" />
+                            }
+                        </div >
+
+                        <div> 
+
+                            <button type="button" style="background-color: #f35741 " onclick="location.href='@Url.Action("DeleteUser", new { id = @Model.User.user_id })'"> Usuń konto </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+            <div class="form-container products-column">
+
+                <div class="card-container">
+
+                    <p2 style="font-weight: bold;"> TWOJE OGŁOSZENIA: </p2>
+
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model.Products)
+                        {
+                            <div class="card">
+
+                                <img src="@Url.Content(@item.tbl_pro_img.FirstOrDefault().pro_img_path)">
+
+                                <div class="info">
+                                    <div class="localisation"> <p>  @item.tbl_wojewodztwa_miasta.nazwa_miasta, @item.tbl_wojewodztwa_miasta.nazwa_województwa  @item.pro_address_street </p> </div>
+
+                                    <div class="name"> <p style="font-size: 20px"> @Html.ActionLink(@item.pro_name, "ViewAd", new { id = @item.pro_id }) </p> </div>
+
+                                    <div class="price"> <p style="font-size: 15px"> @item.pro_price zł  / miesięczny czynsz </p> </div>
+                                </div>
+
+                                <p> <button type="button" onclick="location.href='@Url.Action("ViewAd", new { id = @item.pro_id })'"> Wyświetl szczegóły </button> </p>
+
+                            </div>
+                        }
+                    }
+
+
+                </div>
+
+                <div class="container2" style="clear:both">
+
+                    <div>
+                        Page @(Model.Products.PageCount < Model.Products.PageNumber ? 0 : Model.Products.PageNumber)
+                        of @Model.Products.PageCount   @Html.PagedListPager(Model.Products, page => Url.Action("UserIndex", new { page }))
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>

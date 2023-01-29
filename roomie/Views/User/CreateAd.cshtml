@@ -1,0 +1,176 @@
+﻿@model roomie.Models.CreateAdmodel
+@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/create_add.css" rel="stylesheet" />
+    <title>CreateAd</title>
+</head>
+<body>
+    <div class="container">
+
+        <div class="container-create-ad" id="container">
+
+            @*------DODAWANIE OGŁOSZENIA------*@
+
+            <div class="create-ad">
+
+                @using (@Html.BeginForm("CreateAd", "User", FormMethod.Post, new { @class = "form", enctype = "multipart/form-data" }))
+                {
+
+                    <h1>Dodaj ogłoszenie: </h1>
+                    <p style="font-size:13px"> <i> "*" elementy obowiązkowe </i> </p>
+
+                    @Html.TextBoxFor(x => x.pro_name, new { @placeholder = "*Nadaj tytuł swojemu ogłoszeniu...", @type = "text" })
+                    <span style="color:red">@Html.ValidationMessageFor(x => x.pro_name)</span>
+
+                    <hr />
+
+                    <div class="form__field">
+                        <p>
+                            Dodaj zdjęcia do swojego ogłoszenia:
+                            <input type="file" name="imgfiles" id="imgfiles" class="form-field" required="required" multiple />
+
+                        </p>
+                    </div>
+
+                    <hr />
+
+                    <p> Napisz coś o swoim ogłoszeniu: </p>
+                    @Html.TextBoxFor(x => x.pro_description, new { @placeholder = "*Mam do zaoferowania...", @type = "text" })
+                    <span style="color:red">@Html.ValidationMessageFor(x => x.pro_description)</span>
+
+                    <hr />
+
+                    <div class="pro">
+
+                        <div style="flex-grow: 1; width: 50%;">
+                            @Html.DropDownListFor(x => x.pro_fk_address_city, ViewBag.categorylist as SelectList, "*Wybierz miasto", new { @class = "" })
+                            <span style="color:red">@Html.ValidationMessageFor(x => x.pro_fk_address_city)</span>
+
+                            @Html.TextBoxFor(x => x.pro_address_street, new { @placeholder = "*Na jakiej ulicy znajduje się nieruchomość? ", @type = "text" })
+                            <span style="color:red">@Html.ValidationMessageFor(x => x.pro_address_street)</span>
+                        </div>
+
+                        <div style="flex-grow: 1; width: 50%;">
+                            @Html.TextBoxFor(x => x.pro_address_building_num, new { @placeholder = "Jaki jest numer budynku? ", @type = "text" })
+
+
+                            @Html.TextBoxFor(x => x.pro_address_floor, new { @placeholder = "Na którym piętrze jest mieszkanie?  ", @type = "text" })
+                        </div>
+
+
+                    </div>
+
+                    <hr />
+
+                    <div class="pro">
+
+                        <div style="flex-grow: 1; width: 50%;">
+                            @Html.TextBoxFor(x => x.pro_price, new { @placeholder = "*Jakie jest miesięczna cena najmu?", @type = "text" })
+                            <span style="color:red">@Html.ValidationMessageFor(x => x.pro_price)</span>
+
+
+                            @Html.TextBoxFor(x => x.pro_type, new { @placeholder = "Co oferujesz? pokój, całe mieszkanie, łóżko?", @type = "text" })
+                            <span style="color:red">@Html.ValidationMessageFor(x => x.pro_type)</span>
+
+
+                            @Html.TextBoxFor(x => x.pro_room_size, new { @placeholder = "Jaka jest wielkość pokoju/mieszkania?", @type = "text" })
+
+
+                            @Html.TextBoxFor(x => x.pro_room_num, new { @placeholder = "Ile jest pokoi w całym mieszkaniu?", @type = "text" })
+                        </div>
+
+                        <div style="flex-grow: 1; width: 50%;">
+                            @Html.TextBoxFor(x => x.pro_bathroom_num, new { @placeholder = "Ile jest łazienek w całym mieszkaniu?", @type = "text" })
+
+
+                            @Html.TextBoxFor(x => x.pro_roommates, new { @placeholder = "ilu w mieszkaniu jest lokatorów?", @type = "number" })
+
+
+                            @Html.TextBoxFor(x => x.pro_heating, new { @placeholder = "Jakie w mieszkaniu jest ogrzewanie?", @type = "text" })
+                        </div>
+
+                    </div>
+
+                    <hr />
+
+                    <div class="pro-bool">
+
+                        <div class="bool">
+                            <img src="~/Content/img_icons/tv.png" title="w mieszkaniu jest tv" />
+                            @Html.CheckBoxFor(x => x.pro_TV)
+                        </div>
+
+                        <div class="bool">
+                            <img src="~/Content/img_icons/internet.png" title="w mieszkaniu jest internet" />
+                            @Html.CheckBoxFor(x => x.pro_internet)
+                        </div>
+
+                        <div class="bool">
+                            <img src="~/Content/img_icons/ac.png" title="w mieszkaniu jest klimatyzacja" />
+                            @Html.CheckBoxFor(x => x.pro_ac)
+                        </div>
+
+                        <div class="bool">
+                            <img src="~/Content/img_icons/parking.png" title="przy mieszkaniu jest parking" />
+                            @Html.CheckBoxFor(x => x.pro_parking)
+                        </div>
+
+                        <div class="bool">
+                            <img src="~/Content/img_icons/elevator.png" title="w budynku jest winda" />
+                            @Html.CheckBoxFor(x => x.pro_elevator)
+                        </div>
+
+                        <div class="bool">
+                            <img src="~/Content/img_icons/balcony.png" title="w mieszkaniu jest balkon/taras" />
+                            @Html.CheckBoxFor(x => x.pro_balcony)
+                        </div>
+
+                        <div class="bool">
+                            <img src="~/Content/img_icons/pet.png" title="mieszkanie jest przyjazne zwierzętom" />
+                            @Html.CheckBoxFor(x => x.pro_pet)
+                        </div>
+
+                        <div class="bool">
+                            <img src="~/Content/img_icons/smoking.png" title="w mieszkaniu można palić" />
+                            @Html.CheckBoxFor(x => x.pro_smoking)
+                        </div>
+
+                        <div class="bool">
+                            <img src="~/Content/img_icons/hcp.png" title="mieszkanie jest dostosowane do niepełnosprawnych" />
+                            @Html.CheckBoxFor(x => x.pro_handicapped)
+                        </div>
+
+                    </div>
+
+                    <hr />
+
+                    <div class="submit">
+                        <button> Dodaj ogłoszenie! </button>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
+
+
+<script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
